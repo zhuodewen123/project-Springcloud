@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 商品的controller
+ * 会员的controller
  */
 @Controller
 @RequestMapping("member")

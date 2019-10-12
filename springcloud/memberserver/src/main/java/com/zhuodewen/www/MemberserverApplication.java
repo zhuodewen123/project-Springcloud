@@ -26,14 +26,13 @@ public class MemberserverApplication {
 	 * @param builder
 	 * @return
 	 */
-	@Bean
+	/*@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route(r -> r.path("/qq/**")
-						.and()
-						.uri("http://www.qq.com/"))
+				.route(r -> r.path("/qq*//**")
+						.and().uri("http://www.qq.com/"))
 				.build();
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(MemberserverApplication.class, args);

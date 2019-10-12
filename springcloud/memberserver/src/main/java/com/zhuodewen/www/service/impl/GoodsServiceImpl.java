@@ -21,7 +21,7 @@ public class GoodsServiceImpl implements GoodsService {
     @HystrixCommand(fallbackMethod = "fault")       //熔断器测试(方式一:在"提供者"具体的业务方法上,使用@HystrixCommand(fallbackMethod = "xxx")注解进行熔断)
     public Goods selectById(int  id) {
         Goods goods=new Goods();
-        goods.setGoodName("测试gateway网关--失败");
+        goods.setGoodName("gateway网关--有真实接口的路径不会根据gateway进行转发");
         return goods;
     }
 
