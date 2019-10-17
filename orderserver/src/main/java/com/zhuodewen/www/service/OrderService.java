@@ -18,4 +18,5 @@ public interface OrderService {
     //feign--对应提供者controller接口
     @RequestMapping(value = "/goods/selectById", method = RequestMethod.GET)
     public Goods selectById2(@RequestParam(value = "id")int  id);
+
 }

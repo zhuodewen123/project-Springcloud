@@ -1,5 +1,6 @@
 package com.zhuodewen.www;
 
+import com.zhuodewen.www.service.RabbitMqService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +8,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -19,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 @MapperScan("com.zhuodewen.www.mapper") 					//mapper扫描器
 @EnableFeignClients											//开启feign(调用)
 @EnableHystrix                                              //熔断器
+@EnableBinding(value={RabbitMqService.class})				//rabbitMq
 public class OrderserverApplication {
 
 	/**
@@ -30,6 +33,15 @@ public class OrderserverApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+
+	/**
+	 * rabbitMq--消息消费者
+	 */
+	//@StreamListener(Sink.INPUT)
+	/*@StreamListener("rabbit")
+	public void receiveMq(int id) {
+		orderService.selectById2(id);
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrderserverApplication.class, args);

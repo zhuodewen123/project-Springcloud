@@ -5,6 +5,9 @@ import com.zhuodewen.www.domain.Goods;
 import com.zhuodewen.www.mapper.GoodsMapper;
 import com.zhuodewen.www.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,4 +38,6 @@ public class GoodsServiceImpl implements GoodsService {
         good.setGoodName("使用@HystrixCommand熔断");
         return good;
     }
+
+
 }
