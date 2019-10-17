@@ -3,14 +3,14 @@ package com.zhuodewen.www.controller;
 import com.zhuodewen.www.domain.Goods;
 import com.zhuodewen.www.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.messaging.Message;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 /**
  * 订单的controller
@@ -37,7 +37,7 @@ public class OrderController {
     }
 
     /**
-     * 测试使用feign调用
+     * 测试使用feign调用(在接口内)
      * @param id
      * @return
      */
@@ -46,4 +46,15 @@ public class OrderController {
     public Goods selectById2(int id){
         return orderService.selectById2(id);
     }
+
+    /**
+     * rabbitMq--消息消费者
+     */
+    //@StreamListener(Sink.INPUT)
+	@StreamListener("rabbit")
+	public void receiveMq(int id) {
+		orderService.selectById2(id);
+        System.out.println("RabbitMq测试成功=======================================================");
+    }
+
 }
