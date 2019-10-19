@@ -164,16 +164,16 @@
 		</dependency>
 
 		<!--rabbitMQ(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
-		<!--<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-		</dependency>-->
-
-		<!--kafka(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
+			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
 		</dependency>
+
+		<!--kafka(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
+		</dependency>-->
 
 
 	</dependencies>
