@@ -163,10 +163,22 @@
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 
-		<!--rabbitMQ(spring-cloud-集成)-->
+		<!--rabbitMQ(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+		</dependency>
+
+		<!--kafka(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
+		</dependency>-->
+
+		<!--springboot-redis 依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 	</dependencies>

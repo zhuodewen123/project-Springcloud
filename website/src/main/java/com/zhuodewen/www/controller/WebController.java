@@ -10,8 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Controller
-@RequestMapping("goods")
-public class GoodsController {
+@RequestMapping("/web")
+public class WebController {
 
     /*@Autowired
     private RestTemplate restTemplate;*/
@@ -22,4 +22,11 @@ public class GoodsController {
         return restTemplate.getForObject("http://GOODS-SERVICE/selectAll",Goods.class);
     }*/
 
+    /**
+     * 进入学生页面(测试)
+     */
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
 }
