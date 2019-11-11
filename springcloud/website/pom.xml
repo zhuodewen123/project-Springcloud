@@ -152,6 +152,13 @@
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 
+		<!--httpclient工具-->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+
 		<!--rabbitMQ(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
 		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
