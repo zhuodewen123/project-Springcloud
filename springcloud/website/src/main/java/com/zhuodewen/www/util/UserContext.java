@@ -1,5 +1,6 @@
 package com.zhuodewen.www.util;
 
+import com.zhuodewen.www.vo.MailCodeVO;
 import com.zhuodewen.www.vo.VerifyCodeVO;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -15,6 +16,7 @@ public class UserContext {
 
     //定义session的常量
     private static final String  VERIFY_CODE_IN_SESSION= "verify_code_in_session";
+    private static final String  MAIL_CODE_IN_SESSION= "mail_code_in_session";
 
     //1.获取session
     private static HttpSession getSession(){
@@ -32,5 +34,15 @@ public class UserContext {
     //3.从session中取出验证码
     public static VerifyCodeVO getVerifyCodeVO(){
         return (VerifyCodeVO) getSession().getAttribute(VERIFY_CODE_IN_SESSION);
+    }
+
+    //4.将发送的邮件验证码记录到session 中
+    public static void  setMailCodeVO(MailCodeVO vo){
+        getSession().setAttribute(MAIL_CODE_IN_SESSION,vo);
+    }
+
+    //5.从session中取出邮件验证码
+    public static MailCodeVO getMailCodeVO(){
+        return (MailCodeVO) getSession().getAttribute(MAIL_CODE_IN_SESSION);
     }
 }

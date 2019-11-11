@@ -1,5 +1,7 @@
 package com.zhuodewen.www.service;
 
+import javax.mail.MessagingException;
+
 public interface WebService {
 
     /**
@@ -7,4 +9,10 @@ public interface WebService {
      * @param phoneNumber
      */
     public void sendVerifyCode(String phoneNumber);
+
+    /**
+     * 发送简单邮件(163/QQ)
+     * @param to
+     */
+    public void sendMail(String to) throws MessagingException;
 }

@@ -159,6 +159,12 @@
 			<version>4.5.3</version>
 		</dependency>
 
+		<!--mail邮箱工具-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
 		<!--rabbitMQ(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
 		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>

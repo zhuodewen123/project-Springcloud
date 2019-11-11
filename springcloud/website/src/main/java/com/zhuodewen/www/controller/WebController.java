@@ -4,10 +4,10 @@ import com.zhuodewen.www.service.WebService;
 import com.zhuodewen.www.util.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RequestMapping("/web")
@@ -54,6 +54,26 @@ public class WebController {
         }catch(Exception e){
             e.printStackTrace();
             js.mark("发送失败");
+        }
+        return js;
+    }
+
+    /**
+     * 发送简单邮件(163/QQ)
+     * @return
+     */
+    @GetMapping("/mail")
+    @ResponseBody
+    public JSONResult sendSimpleMail(String to) {
+        JSONResult js=new JSONResult();
+        try{
+            webService.sendMail(to);
+            js.mark("发送成功");
+            js.setResult("SUCCESS");
+        }catch(Exception e){
+            e.printStackTrace();
+            js.mark("发送失败");
+            js.setResult("FALSE");
         }
         return js;
     }
