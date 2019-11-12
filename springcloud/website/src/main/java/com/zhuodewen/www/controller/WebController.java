@@ -1,6 +1,6 @@
 package com.zhuodewen.www.controller;
 
-import com.zhuodewen.www.service.WebService;
+import com.zhuodewen.www.service.WebSiteService;
 import com.zhuodewen.www.util.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WebController {
 
     @Autowired
-    private WebService webService;
+    private WebSiteService webService;
 
     /*@Autowired
     private RestTemplate restTemplate;*/
@@ -34,7 +34,7 @@ public class WebController {
     }
 
     /**
-     * 进入短信注册页面(测试)
+     * 进入注册页面(测试)
      */
     @RequestMapping("/register")
     public String register(){
@@ -62,7 +62,7 @@ public class WebController {
      * 发送简单邮件(163/QQ)
      * @return
      */
-    @GetMapping("/mail")
+    @PostMapping("/sendMailCode")
     @ResponseBody
     public JSONResult sendSimpleMail(String to) {
         JSONResult js=new JSONResult();

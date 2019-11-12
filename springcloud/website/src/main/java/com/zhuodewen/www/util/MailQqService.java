@@ -1,4 +1,4 @@
-package com.zhuodewen.www.service;
+package com.zhuodewen.www.util;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

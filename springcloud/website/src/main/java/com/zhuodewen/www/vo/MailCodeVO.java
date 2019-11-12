@@ -3,7 +3,7 @@ package com.zhuodewen.www.vo;
 import java.util.Date;
 
 /**
- * 封装验证码信息的类
+ * 封装邮件验证码信息的类
  */
 public class MailCodeVO {
     //验证码

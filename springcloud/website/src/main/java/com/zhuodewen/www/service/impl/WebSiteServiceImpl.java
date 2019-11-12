@@ -1,5 +1,8 @@
-package com.zhuodewen.www.service;
+package com.zhuodewen.www.service.impl;
 
+import com.zhuodewen.www.util.Mail163Service;
+import com.zhuodewen.www.util.MailQqService;
+import com.zhuodewen.www.service.WebSiteService;
 import com.zhuodewen.www.util.Assert;
 import com.zhuodewen.www.util.DateUtil;
 import com.zhuodewen.www.util.HttpClientUtil;
@@ -14,7 +17,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
-public class WebServiceImpl implements WebService {
+public class WebSiteServiceImpl implements WebSiteService {
 
     @Autowired
     private Mail163Service mail163Service;
@@ -98,7 +101,7 @@ public class WebServiceImpl implements WebService {
         String content="尊敬的客户,您好!您本次的验证码是:"+code+",有效期为5分钟,请尽快验证!";  //邮件内容
         System.out.println("邮箱验证码:"+code);
 
-        String str=to.split("\\.")[0].split("@")[1];                        //截取邮箱地址,判断是163邮箱还是qq邮箱("."需要转义)
+        String str=to.split("\\.")[0].split("@")[1];                        //截取邮箱地址,判断是163邮箱还是qq邮箱("."前需要加\\进行转义)
 
         if(str==null && str.trim().equals("")){
             return ;

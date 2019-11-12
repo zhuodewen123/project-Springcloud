@@ -2,7 +2,7 @@ package com.zhuodewen.www.service;
 
 import javax.mail.MessagingException;
 
-public interface WebService {
+public interface WebSiteService {
 
     /**
      * 发送短信接口
