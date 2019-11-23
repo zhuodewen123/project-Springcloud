@@ -54,7 +54,7 @@ public class GoodsServiceImpl implements GoodsService {
         goodsMapper.updateById(goods);
     }
 
-    public void deleteOne(Integer id) {
+    public void deleteOne(Long id) {
         goodsMapper.deleteById(id);
     }
 

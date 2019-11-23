@@ -14,7 +14,7 @@ public interface GoodsService {
     List<Goods> selectAll();
     Goods selectOne(Goods goods);
     void updateOne(Goods goods);
-    void deleteOne(Integer goods);
+    void deleteOne(Long goods);
     void insertOne(Goods goods);
 
 }

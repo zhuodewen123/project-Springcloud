@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+    <title>thymeleaf页面</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.form.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/uploadifive.css" />
+    <script type="text/javascript" src="/js/jquery.uploadifive.js"></script>
+    <script inline="javascript">
+        $(function () {
+            //初始化时无数据
+            var html="<td class='nowData' align='center' colspan='9'>暂无数据,请进行查询</td>";
+            $("#data").after(html);
+
+
+            //根据关键字查询
+            $('#btn').click(function () {
+                var searchValue=$("#search").val();
+                $.ajax({
+                    url:"/student/search/"+searchValue,
+                    dataType:"json",
+                    type:"GET",
+                    success: function(total){
+                        if(total.msg=='查询成功'){
+                            //先清除旧数据
+                            $(".nowData").remove();
+                            if(!total.result.length || total.result.length==0 ){
+                                //无数据
+                                var html='<tr><td colspan="8" align="center" class="nowData">查无数据</td></tr>';
+                                $("#data").after(html);
+                            }else{
+                                //有数据--拼接查出来的数据
+                                for(var i=0;i<total.result.length;i++){
+                                    var now=total.result[i];
+                                    var html='<tr class="nowData"><td><input type="checkbox"  id="'+now.id+'"></td>><td>'+(total.result.length-i)+'</td><td>'+now.name+'</td><td>'+now.age+'</td>'+
+                                    '<td>'+now.sex+'</td><td>'+now.address+'</td><td>'+now.email+'</td><td>'+now.phone+'</td></tr>';
+                                    $("#data").after(html);
+                                }
+                            }
+                        }
+                    }
+                })
+            })
+
+        })
+
+    </script>
+</head>
+
+   <body>
+        <p th:text="thymeleaf页面" align="center"/>
+
+        <!--<form action="http://api.map.baidu.com/geocoder"  id="baiduForm"  align="center">-->
+            <div  align="center">
+                <label>测试1:ElasticSearch关键字搜索</label>
+                <p>
+                    <input type="text" name="inputValue" id="search" placeholder="请输入您的关键字..."/>
+                    <button type="button"  id="btn">搜索</button>
+                <p/>
+            </div>
+        <!--</form>-->
+        <table id="table"  align="center">
+            <tr id="data">
+                <th>
+                    <input type="checkbox"  id="allCheck">
+                </th>
+                <th>编号</th>
+                <th>名称</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>地址</th>
+                <th>email</th>
+                <th>电话</th>
+            </tr>
+        </table>
+
+   </body>
+
+</html>

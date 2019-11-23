@@ -3,13 +3,12 @@ package com.zhuodewen.www;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
@@ -19,6 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableHystrix                                             //熔断器
 @MapperScan("com.zhuodewen.www.mapper") 				   //mapper扫描器
 @EnableTransactionManagement                               //事务管理器
+//@EnableElasticsearchRepositories(basePackages = "com.zhuodewen.www")	//开启扫描搜索引擎的注解
 public class MemberserverApplication {
 
 	/**
@@ -35,6 +35,8 @@ public class MemberserverApplication {
 	}*/
 
 	public static void main(String[] args) {
+		//ES6.5.2和SpringBoot2.0.4的netty会冲入,启动时先把es的netty去掉
+		System.setProperty("es.set.netty.runtime.available.processors", "false");
 		SpringApplication.run(MemberserverApplication.class, args);
 	}
 

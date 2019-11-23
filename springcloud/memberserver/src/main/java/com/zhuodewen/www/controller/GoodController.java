@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.List;
 
 /**
@@ -19,12 +20,6 @@ public class GoodController {
 
     @Autowired
     private GoodsService goodsService;
-
-    /*@RequestMapping(value = "selectById",method = RequestMethod.GET)
-    @ResponseBody
-    public Goods selectById(int id){
-        return goodsService.selectById(id);
-    }*/
 
     /**
      * 测试MybatisPlus
@@ -62,7 +57,7 @@ public class GoodController {
 
     @RequestMapping(value = "deleteOne",method = RequestMethod.GET)
     @ResponseBody
-    public JSONResult deleteOne(Integer id){
+    public JSONResult deleteOne(Long id){
         JSONResult js=new JSONResult();
         try{
             goodsService.deleteOne(id);

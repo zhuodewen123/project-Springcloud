@@ -45,4 +45,5 @@ public class UserContext {
     public static MailCodeVO getMailCodeVO(){
         return (MailCodeVO) getSession().getAttribute(MAIL_CODE_IN_SESSION);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.zhuodewen.www.controller;
 
+import com.zhuodewen.www.domain.Goods;
 import com.zhuodewen.www.service.WebSiteService;
 import com.zhuodewen.www.util.JSONResult;
 import io.swagger.annotations.Api;
