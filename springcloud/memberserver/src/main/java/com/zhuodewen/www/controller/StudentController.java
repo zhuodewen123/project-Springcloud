@@ -6,6 +6,9 @@ import com.zhuodewen.www.service.StudentService;
 import com.zhuodewen.www.util.JSONResult;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -152,6 +155,52 @@ public class StudentController {
             }
             js.mark("查询成功");
             js.setResult(list);
+        }catch(Exception e){
+            e.printStackTrace();
+            js.mark("查询失败");
+        }
+        return js;
+    }
+
+    /**
+     * ES分页1(条件搜索+分页)
+     * @return
+     */
+    @RequestMapping(value="/page",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONResult page(String q){
+        JSONResult js=new JSONResult();
+        try{
+            //1.创建builder
+            QueryStringQueryBuilder builder = new QueryStringQueryBuilder(q);
+            //2.执行查询
+            //PageRequest分页对象的of方法中,第一个参数是分页数(注意是从0开始计算第一页);第二个参数是分页的条目数;(有第三个参数是排序)
+            Page<Student> searchResult = studentRepository.search(builder,PageRequest.of(0, 10));
+            js.mark("查询成功");
+            js.setResult(searchResult);
+        }catch(Exception e){
+            e.printStackTrace();
+            js.mark("查询失败");
+        }
+        return js;
+    }
+
+    /**
+     * ES分页2(条件搜索+分页+排序)
+     * @return
+     */
+    @RequestMapping(value="/pageAndSort",method = RequestMethod.GET)
+    @ResponseBody
+    public JSONResult pageAndSort(String q){
+        JSONResult js=new JSONResult();
+        try{
+            //1.创建builder
+            QueryStringQueryBuilder builder = new QueryStringQueryBuilder(q);
+            //2.执行查询
+            //PageRequest分页对象的of方法中,第一个参数是分页数(注意是从0开始计算第一页);第二个参数是分页的条目数;第三个参数是排序
+            Page<Student> searchResult = studentRepository.search(builder,PageRequest.of(0, 10,Sort.by("age").descending()));
+            js.mark("查询成功");
+            js.setResult(searchResult);
         }catch(Exception e){
             e.printStackTrace();
             js.mark("查询失败");
