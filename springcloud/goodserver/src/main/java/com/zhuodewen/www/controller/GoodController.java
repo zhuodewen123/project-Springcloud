@@ -30,11 +30,25 @@ public class GoodController {
     @Autowired
     private RabbitMqService rabbitMqService;
 
-
+    /**
+     * 根据id查询商品对象
+     */
     @RequestMapping(value = "selectById",method = RequestMethod.GET)
     @ResponseBody
     public Goods selectById(int id){
         return goodsService.selectById(id);
+    }
+
+    /**
+     * 测试Async异步调用(贴了@Async的方法不能再当前类中)
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "selectById2",method = RequestMethod.GET)
+    @ResponseBody
+    public String selectById2(int id){
+        goodsService.selectById2(id);
+        return "测试Async--OK";
     }
 
     /**
