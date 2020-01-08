@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("com.zhuodewen.www.mapper") 				//mapper扫描器
 @EnableTransactionManagement							//事务管理器
 @EnableBinding(value= {RabbitMqService.class})			//开启RabbitMQ,注明接口类
+@EnableAsync											//开启Async异步调用(线程)
 public class GoodserverApplication {
 
 	public static void main(String[] args) {

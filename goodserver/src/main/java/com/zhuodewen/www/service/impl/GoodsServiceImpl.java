@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +30,7 @@ public class GoodsServiceImpl implements GoodsService {
     private RedisTemplate redisTemplate;
     //private StringRedisTemplate redisTemplate;
 
-    //@HystrixCommand(fallbackMethod = "fault")       //熔断器测试(方式一:在"提供者"具体的业务方法上,使用@HystrixCommand(fallbackMethod = "xxx")注解进行熔断)
+    //@HystrixCommand(fallbackMethod = "fault")         //熔断器测试(方式一:在"提供者"具体的业务方法上,使用@HystrixCommand(fallbackMethod = "xxx")注解进行熔断)
     public Goods selectById(int  id) {
         //模拟异常--模拟调用接口失败
         //int b=1/0;
@@ -58,6 +59,12 @@ public class GoodsServiceImpl implements GoodsService {
         //测试redis--list:存入list
         listOperations.rightPushAll("list",list);
 
+        return good;
+    }
+
+    @Async                                             //测试异步调用(线程)
+    public Goods selectById2(int  id) {
+        Goods good=goodsMapper.selectByPrimaryKey(id);
         return good;
     }
 

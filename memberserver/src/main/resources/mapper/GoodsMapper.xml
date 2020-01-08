@@ -36,7 +36,7 @@
       pic_url = #{picUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <!--<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, good_name, good_code, title, price, discount, contant, url, pic_url
     from goods
     where id = #{id,jdbcType=INTEGER}
@@ -44,5 +44,5 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id, good_name, good_code, title, price, discount, contant, url, pic_url
     from goods
-  </select>
+  </select>-->
 </mapper>

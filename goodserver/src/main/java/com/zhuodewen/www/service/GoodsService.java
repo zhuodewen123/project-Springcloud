@@ -6,4 +6,5 @@ public interface GoodsService {
 
     Goods selectById(int id);
 
+    Goods selectById2(int id);
 }

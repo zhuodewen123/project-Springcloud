@@ -1,99 +1,66 @@
 package com.zhuodewen.www.domain;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * 商品类
  */
+@ToString
+@Getter
+@Setter
+@TableName("goods")                         //MybatisPlus
+@Document(indexName = "shop",type="goods")  //ES
 public class Goods implements Serializable{
+
+    @TableId(value = "id", type = IdType.AUTO)  //MybatisPlus
+    @Id                                         //ES
     private Integer id;
 
     //商品名称
-    private String goodName;
+    @Field  //ES
+    private String good_name;
 
     //商品编码
-    private String goodCode;
+    @Field  //ES
+    private String good_code;
 
     //商品标题
+    @Field  //ES
     private String title;
 
     //价格
+    @Field  //ES
     private BigDecimal price;
 
     //折扣
+    @Field  //ES
     private BigDecimal discount;
 
     //商品描述
-    private String context;
+    @Field  //ES
+    private String contant;
 
     //商品链接
+    @Field  //ES
     private String url;
 
     //图片地址
-    private String picUrl;
+    @Field  //ES
+    private String pic_url;
 
-    public String getGoodName() {
-        return goodName;
-    }
+    //domain类中有但库中表没有的属性--Mybatis
+    @TableField(exist = false)
+    private String other;
 
-    public void setGoodName(String goodName) {
-        this.goodName = goodName;
-    }
-
-    public String getGoodCode() {
-        return goodCode;
-    }
-
-    public void setGoodCode(String goodCode) {
-        this.goodCode = goodCode;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
-    }
-
-    public String getContext() {
-        return context;
-    }
-
-    public void setContext(String context) {
-        this.context = context;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getPicUrl() {
-        return picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
-    }
 }
