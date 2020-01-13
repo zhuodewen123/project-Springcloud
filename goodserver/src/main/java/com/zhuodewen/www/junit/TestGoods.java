@@ -1,5 +1,7 @@
 package com.zhuodewen.www.junit;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -9,9 +11,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TestGoods {
 
+    @Before
+    public void before(){
+        System.out.println("before======================");
+    }
+
     @Test
     public void test(){
-        System.out.println("还有@After,@Before等注解======================");
+        System.out.println("test========================");
+    }
+
+    @After
+    public void after(){
+        System.out.println("after======================");
     }
 
 }
