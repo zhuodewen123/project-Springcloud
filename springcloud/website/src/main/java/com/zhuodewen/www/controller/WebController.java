@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Api(value="web模块查看接口",tags={"webAPi"})
 @Controller
-@RequestMapping("/web")
+@RequestMapping("/")
 public class WebController {
 
     @Autowired
@@ -28,6 +28,16 @@ public class WebController {
 
         return restTemplate.getForObject("http://GOODS-SERVICE/selectAll",Goods.class);
     }*/
+
+    /**
+     * 登录页面
+     * @return
+     */
+    @ApiOperation("进入登录页面(测试)")
+    @RequestMapping(value="/loginPage",method = RequestMethod.GET)
+    public String loginPage(){
+        return "loginPage";
+    }
 
     /**
      * 进入学生页面(测试)

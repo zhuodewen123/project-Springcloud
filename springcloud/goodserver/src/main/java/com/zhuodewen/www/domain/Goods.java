@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 /**
  * 商品类
  */
-public class Goods implements Serializable{
+public class Goods implements Serializable {
     private Integer id;
 
     //商品名称
