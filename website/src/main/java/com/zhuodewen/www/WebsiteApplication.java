@@ -20,7 +20,7 @@ public class WebsiteApplication extends SpringBootServletInitializer {
 	//去除SpringBoot自带tomcat后,需加入该代码(即使用外部tomcat部署项目)
 	/*@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(WebsiteApplication.class);	ss}*/
+		return application.sources(WebsiteApplication.class);}*/
 
 
 	public static void main(String[] args) {
