@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+    <title>thymeleaf页面</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script type="text/javascript" src="/js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.form.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/uploadifive.css" />
+    <script type="text/javascript" src="/js/jquery.uploadifive.js"></script>
+    <script inline="javascript">
+        $(function () {
+
+            //文件上传按钮
+            $('#uploadBtn').uploadifive({
+                'auto': true,		//是否自动上传，默认true
+                'uploadScript': '/student/uploadPhoto',	//上传路径(对应controller/action)
+                'fileObjName': 'photo',		//file文件对象名称
+                'buttonText': '上传图片',	//上传按钮显示文本
+                'fileType': 'image/*',		//上传文件类型
+                'multi': false,		//是否允许多个文件上传，默认为true
+                'fileSizeLimit': 5242880,	//允许文件上传的最大尺寸
+                'uploadLimit': 2,		//一次可以上传的最大文件数
+                'queueSizeLimit': 2,		//允许队列中存在的最大文件数
+                'onUploadComplete': function (file, data) {	//文件上传成功后执行
+                    //file--上传的文件对象
+                    //data--后台controller返回的数据(一般是响应图片的地址)
+
+                    $('#uploadImg').attr('src',data);		//1.回显,将图片地址设置到img中
+                    $("#uploadImage").val(data);		//2.将图片路径设置到隐藏域
+                },
+                onFallback: function () {		//HTML5 API不支持的浏览器触发
+                    $.messager.alert("提示", "该浏览器无法使用!");
+                }
+            });
+
+            //百度地图调起(web/app)
+            $('#baiduBtn').click(function () {
+                $('#address').val($('#inputValue').val());
+                $('#output').val("html");
+                $('#src').val("webapp.baidu.openAPIdemo");
+                $("#baiduForm").submit();
+            })
+
+            //获取定位简约数据(web/app)
+            $('#testPoint').click(function () {
+                //var url="http://api.map.baidu.com/location/ip?ip=192.168.43.44&ak=qqoxA7b1GuulwxXuhv7Fg4tgdazoCkR7";
+                var url="http://api.map.baidu.com/location/ip?ak=qqoxA7b1GuulwxXuhv7Fg4tgdazoCkR7";
+                $.ajax({
+                    url:url,
+                    dataType:"jsonp",
+                    type:"GET",
+                    //async:false,
+                    success: function(total){
+                        $("#point").val(total.content.address);
+                    }
+                })
+            })
+
+            //线路规划
+            /*$('#testRoad').click(function () {
+                //var url="http://api.map.baidu.com/directionlite/v1/driving?origin=40.01116,116.339303&destination=39.936404,116.452562&ak=qqoxA7b1GuulwxXuhv7Fg4tgdazoCkR7";
+                var url="http://api.map.baidu.com/directionlite/v1/transit?origin=40.056878,116.30815&destination=31.222965,121.505821&ak=qqoxA7b1GuulwxXuhv7Fg4tgdazoCkR7";
+                $.ajax({
+                    url:url,
+                    dataType:"jsonp",
+                    type:"GET",
+                    success: function(total){
+                        console.log(total);
+                    }
+                })
+            })*/
+
+        })
+
+    </script>
+</head>
+
+   <body>
+        <p th:text="thymeleaf页面" align="center"/>
+        <form action="" enctype="multipart/form-data" align="center">
+            <div  align="center">
+                <label>测试1:文件上传(图片)</label>
+                <div>
+                    <div>
+                        <a href="javascript:;" id="uploadBtn" >上传图片</a>
+                    </div>
+                    <img alt="" src="" class="uploadImg" id="uploadImg" />
+                    <input type="hidden" name="image1" id="uploadImage" />
+                </div>
+            </div>
+        </form>
+
+        <form action="http://api.map.baidu.com/geocoder"  id="baiduForm"  align="center">
+            <div  align="center">
+                <label>测试2:百度地图-地图调起</label>
+                <input type="hidden" name="address" id="address" />
+                <input type="hidden" name="output" id="output" />
+                <input type="hidden" name="src" id="src" />
+                <p>
+                    <input type="text" name="inputValue" id="inputValue" placeholder="请输入您的地址..."/>
+                    <button type="button"  id="baiduBtn">搜索位置</button>
+                <p/>
+            </div>
+        </form>
+
+        <div align="center">
+            <label>测试3:百度地图-测试简单定位</label>
+            <p>
+                <button type="button" id="testPoint">获取定位</button>
+                <input id="point"></input>
+            <p>
+        </div>
+
+   </body>
+
+</html>
