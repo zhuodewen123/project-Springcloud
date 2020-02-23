@@ -2,7 +2,6 @@ package com.zhuodewen.www;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
@@ -18,9 +17,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class WebsiteApplication extends SpringBootServletInitializer {
 
-	@Override
+	//去除SpringBoot自带tomcat后,需加入该代码(即使用外部tomcat部署项目)
+	/*@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(WebsiteApplication.class);	}
+		return application.sources(WebsiteApplication.class);	}*/
 
 
 	public static void main(String[] args) {
