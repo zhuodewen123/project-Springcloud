@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Api(value="web模块查看接口",tags={"webAPi"})
 @Controller
-@RequestMapping("/web")
+@RequestMapping("/")
 public class WebController {
 
     @Autowired

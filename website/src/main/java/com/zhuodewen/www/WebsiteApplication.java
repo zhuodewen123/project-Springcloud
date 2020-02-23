@@ -2,6 +2,8 @@ package com.zhuodewen.www;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Import;
@@ -14,7 +16,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableEurekaClient                                        	//Eureka的消费端(SpringCloud生产者)
 @EnableHystrix                                            	//熔断器
 @EnableSwagger2
-public class WebsiteApplication {
+public class WebsiteApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(WebsiteApplication.class);	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebsiteApplication.class, args);
