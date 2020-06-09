@@ -34,34 +34,34 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<!--添加移除内嵌的tomcat模块-->
-			<!--<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>-->
-		</dependency>
-
-		<!--添加移除内嵌的tomcat模块-->
-		<!--<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-servlet-api</artifactId>
-			<version>7.0.47</version>
-		</dependency>-->
-
-		<!--启动报el错-->
-		<!--<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>1.5.6.RELEASE</version>
-			&lt;!&ndash;添加移除内嵌的tomcat模块&ndash;&gt;
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>-->
+		</dependency>
+
+		<!--添加移除内嵌的tomcat模块-->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>7.0.47</version>
+		</dependency>
+
+		<!--启动报el错-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.5.6.RELEASE</version>
+			<!-- 添加移除内嵌的tomcat模块 -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 		<!-- springboot 基础包 -->
 		<dependency>
